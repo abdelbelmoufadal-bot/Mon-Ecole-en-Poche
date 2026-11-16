@@ -16,7 +16,8 @@ const testSuites = [
   { name: 'Compatibilité vocale Windows locale', script: 'tests/native-audio.test.js' },
   { name: 'Parcours des semaines en cinq étapes', script: 'tests/week-journey.test.js' },
   { name: 'Enchaînement des voix du Grand Bilan', script: 'tests/bilan-audio.test.js' },
-  { name: 'Enchaînement des voix des défis anglais', script: 'tests/english-audio-sequence.test.js' }
+  { name: 'Enchaînement des voix des défis anglais', script: 'tests/english-audio-sequence.test.js' },
+  { name: 'Présentation mobile et menu compact', script: 'tests/mobile-layout.test.js' }
 ];
 
 let failed = 0;

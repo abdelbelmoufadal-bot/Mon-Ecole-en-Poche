@@ -64,7 +64,7 @@ D:\ERP\CP\
 
 | Commande | Action |
 |---|---|
-| `npm test` | Exécute les 12 suites : interactions, routeur, données, runtime, navigation, régressions, HTTP, chemins audio, compatibilité Windows, parcours des semaines et enchaînements des voix français/anglais |
+| `npm test` | Exécute les 13 suites : interactions, routeur, données, runtime, navigation, régressions, HTTP, chemins audio, compatibilité Windows, parcours des semaines et enchaînements des voix français/anglais et présentation mobile |
 | `npm run test:audit` | Parcourt les routes et commandes audio des trois applications dans un DOM isolé |
 | `npm run test:regressions` | Vérifie les validations des activités, les réglages, les profils et les imports de sauvegardes |
 | `npm run test:media` | Vérifie les références de médias et décode les fichiers audio ; nécessite Python et FFmpeg |
@@ -111,3 +111,13 @@ Arrêter annule la lecture, la pause et le passage automatique. Un bouton Questi
 Les missions attendent la fin de l’encouragement anglais, une pause de 500 ms, la réponse lue jusqu’à sa fin et une pause de 1 seconde avant le défi suivant. Le délai automatique de 800 ms a été supprimé. Les voix enregistrées et synthétiques signalent leur fin réelle ; une répétition demandée n’est terminée qu’après sa dernière lecture.
 
 Stop audio, Listen, Pause, l’aide et la navigation annulent la séquence en attente. Après un arrêt ou une erreur, Continue permet de reprendre manuellement. Test ciblé : node tests/english-audio-sequence.test.js.
+
+## Présentation mobile
+
+Un seul bouton Menu ouvre une liste défilante avec la navigation, la langue, le profil, les étoiles et les réglages. Les étapes de la leçon ou de la semaine y restent disponibles. Le menu se ferme avec un choix, la croix, Échap ou le fond extérieur. Sur ordinateur, les commandes retrouvent leur position d’origine.
+
+Le lecteur mobile affiche Rejouer, Arrêter et Options. Les réglages de répétition et de vitesse sont repliés ; un espace correspondant à sa hauteur est réservé pour permettre de voir toutes les réponses. En paysage sur écran bas, il reste dans le flux de la page.
+
+Les consignes des ateliers et bilans occupent toute la largeur, au-dessus du bouton d’écoute. Les choix illustrés sont présentés sur deux colonnes au maximum ; les réponses longues passent sur une colonne aux petites largeurs. L’accueil utilise des cartes de matières compactes et entièrement cliquables. Les contenus et le fonctionnement sur ordinateur sont conservés.
+
+Le comportement est partagé par assets/mobile-layout.js et assets/mobile-layout.css. Test ciblé : node tests/mobile-layout.test.js.

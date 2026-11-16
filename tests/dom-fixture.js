@@ -3,18 +3,20 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const ROOT = path.resolve(__dirname,'..');
-async function fixture(file='index.html', {offline=false,inputFile}={}) {
+async function fixture(file='index.html', {offline=false,inputFile,viewportWidth=1280,viewportHeight=900}={}) {
  const errors=[],audio=[],utterances=[],fetches=[],limitations=[],timers=new Map();let timerId=0;
  const vc=new VirtualConsole();vc.on('jsdomError',e=>{if(e.message==='Not implemented: navigation to another Document')limitations.push(e.message);else errors.push(e.message)});
  const raw=fs.readFileSync(inputFile || path.join(ROOT,file),'utf8');
  const sourceHash=crypto.createHash('sha256').update(raw).digest('hex');
- const source=raw.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<script src="(?:\.\.\/)*assets\/week-journey\.js"><\/script>/g,()=>'<script>'+fs.readFileSync(path.join(ROOT,'assets/week-journey.js'),'utf8')+'</script>');
+ const source=raw.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<script src="(?:\.\.\/)*assets\/(week-journey|mobile-layout)\.js"><\/script>/g,(_,name)=>'<script>'+fs.readFileSync(path.join(ROOT,'assets',name+'.js'),'utf8')+'</script>');
  const dom=new JSDOM(source,{url:'http://audit.local/'+file,runScripts:'dangerously',pretendToBeVisual:true,virtualConsole:vc,beforeParse(w){
   w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};
   w.HTMLElement.prototype.setPointerCapture=()=>{};w.HTMLElement.prototype.releasePointerCapture=()=>{};
   w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','')};
   w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open')};
-  w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
+  Object.defineProperty(w,'innerWidth',{value:viewportWidth,writable:true});
+  Object.defineProperty(w,'innerHeight',{value:viewportHeight,writable:true});
+  w.matchMedia=query=>({get matches(){return /max-width:\s*700px/.test(query)&&w.innerWidth<=700||/max-width:\s*950px/.test(query)&&w.innerWidth<=950&&w.innerHeight<=500},addEventListener(){},removeEventListener(){}});
   w.setTimeout=(fn,ms)=>{const id=++timerId;timers.set(id,{fn,ms});return id};w.clearTimeout=id=>timers.delete(id);
   w.HTMLCanvasElement.prototype.getContext=()=>new Proxy({},{get:(o,k)=>k==='measureText'?()=>({width:10}):()=>{}});
   w.HTMLCanvasElement.prototype.toDataURL=()=> 'data:image/png;base64,AA==';
