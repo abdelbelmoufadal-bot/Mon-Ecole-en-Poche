@@ -82,3 +82,58 @@
 .high-contrast .cp-week-journey{--cp-bg:#fff;--cp-panel:#fff;--cp-text:#102e24;--cp-muted:#243d32;--cp-line:#243d32;--cp-soft:#fff;--cp-green:#123c2b;--cp-on-green:#fff;color-scheme:light}
 @media(max-width:650px){.cp-week-journey .sound-showcase{flex-wrap:wrap;gap:12px}.cp-week-journey .cp-step{min-height:94px}.cp-week-journey .cp-step strong{font-size:.85rem}.cp-week-journey .cp-step small{font-size:.75rem}.cp-week-journey .cp-stage .ritual-image{height:150px}.cp-week-journey .writing-teaser{min-width:100px}}
 @media(prefers-reduced-motion:reduce){.cp-week-journey *{animation:none!important;transition:none!important}}
+.adventure-overview{--adv-ink:#193f35;--adv-green:#176653;--adv-line:#d6e4d7;color:var(--adv-ink);padding:8px 0 32px}
+.adventure-overview *{box-sizing:border-box}
+.adventure-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:8px 0 28px}
+.adventure-heading h1{font-size:clamp(30px,3.5vw,48px);line-height:1.1;margin:6px 0 10px;letter-spacing:-1.2px}
+.adventure-heading p{margin:0;color:#546b5b}
+.adventure-eyebrow{font-size:11px!important;letter-spacing:1.8px;font-weight:850;color:var(--adv-green)!important}
+.adventure-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:32px;align-items:start}
+.adventure-companion{position:sticky;top:145px;border:1px solid var(--adv-line);border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 12px 28px #214e3510}
+.adventure-feature-image{height:185px;position:relative;background:#e8f0da;overflow:hidden}
+.adventure-feature-image img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.adventure-feature-label{position:absolute;bottom:12px;left:12px;background:#fffbea;color:#214e35;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:800}
+.adventure-feature-body{padding:22px}
+.adventure-feature-body h2{font-size:26px;line-height:1.2;margin:8px 0 14px}
+.adventure-sounds{display:flex;gap:6px;flex-wrap:wrap}
+.adventure-sounds>span{display:grid;place-items:center;min-width:36px;height:36px;border-radius:12px;background:#f1f5e9;color:#235a47;font-size:21px;font-weight:850;padding:0 8px}
+.adventure-invite{font-size:15px;line-height:1.5;margin:14px 0 18px}
+.adventure-start{width:100%;justify-content:space-between!important;min-height:52px;font-size:17px}
+.adventure-rules{font-size:12px;margin-top:18px;color:#5b6f61}
+.adventure-rules summary{cursor:pointer;padding:10px 0;min-height:40px;text-decoration:underline;text-underline-offset:3px}
+.adventure-progress{background:#eaf2e8;border-radius:18px;padding:18px 20px;margin-bottom:25px}
+.adventure-progress>div:first-child{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.adventure-progress strong{font-size:16px}.adventure-progress span{font-size:12px}
+.adventure-progress-track{height:8px;background:#d5e2d2;border-radius:10px;margin-top:12px;overflow:hidden}
+.adventure-progress-track>span{display:block;height:100%;background:var(--adv-green);border-radius:10px;transition:width .4s}
+.adventure-chapter{margin-bottom:30px}
+.adventure-chapter>h2{display:flex;align-items:center;gap:10px;font-size:17px;margin:0 0 18px}
+.adventure-chapter>h2>span{font-size:11px;border:1px solid #cbd9c4;border-radius:50%;width:29px;height:29px;display:grid;place-items:center;color:#60755f}
+.adventure-path{list-style:none;padding:12px 0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.adventure-path:before{content:"";position:absolute;left:0;right:0;top:36px;border-top:3px dashed #b6cdb0}
+.adventure-overview .trail-card.adventure-stop{position:relative;border:1px solid var(--adv-line);border-radius:18px;background:#fff;padding:15px 12px;box-shadow:0 4px 0 #e3ebdd;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;transform:none}
+.adventure-overview .adventure-stop:nth-child(even){margin-top:20px;margin-bottom:-20px}
+.adventure-overview .adventure-stop.is-next{border:2px solid #dfb843;background:#fff9e3;box-shadow:0 5px 0 #ebd785}
+.adventure-node{border:3px solid #fff;box-shadow:0 0 0 1px #c9dcc6;width:38px;height:38px;border-radius:50%;background:#e4efdc;color:#526d50;display:grid;place-items:center;font-size:16px;font-weight:850}
+.is-next .adventure-node{background:#ffd04c;color:#283e2c;box-shadow:0 0 0 2px #dfb843}
+.completed .adventure-node{background:var(--adv-green);color:#fff}
+.adventure-stop-content{width:100%;display:flex;flex-direction:column;flex:1;gap:10px}
+.adventure-stop-top{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:750}
+.adventure-state{font-size:10px;color:#5f735f}.is-next .adventure-state{color:#805b11}.completed .adventure-state{color:#176653}
+.adventure-stop h3{font-size:15px;line-height:1.35;margin:0;min-height:61px}
+.adventure-stop .adventure-sounds>span{height:29px;min-width:29px;font-size:16px;border-radius:9px}
+.adventure-week-link{display:flex;align-items:center;justify-content:space-between;gap:4px;text-align:start;background:transparent;border:0;border-top:1px solid #e4ebdd;color:#285746;font:inherit;font-size:12px;font-weight:850;padding:12px 0 0;min-height:44px;text-decoration:none;margin-top:auto;cursor:pointer}
+.adventure-week-link:before{content:"";position:absolute;inset:0;border-radius:18px}
+.adventure-week-link:focus-visible{outline:3px solid #1c745b;outline-offset:3px}
+.adventure-stop.locked{background:#f4f6ef!important;box-shadow:none!important}.locked .adventure-feature-image{filter:saturate(.5)}
+.encouragement-card #atelier-continue{min-height:52px;margin:15px auto 5px}.encouragement-card #atelier-stop-feedback{display:block;margin:12px auto}.encouragement-card [hidden]{display:none!important}
+@media(min-width:701px) and (max-width:1100px){.adventure-layout{grid-template-columns:250px minmax(0,1fr);gap:22px}.adventure-path{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}.adventure-stop h3{min-height:40px}}
+@media(max-width:700px){
+ .adventure-overview{padding:0 4px 24px}.adventure-heading{display:block;margin:14px 0 20px}.adventure-heading h1{font-size:31px;letter-spacing:-.8px}.adventure-heading>div>p:last-child{font-size:14px}.adventure-heading #mascot-speak{margin-top:12px;font-size:12px;min-height:44px}
+ .adventure-layout{display:flex;flex-direction:column;gap:24px}.adventure-companion{position:static;width:100%;display:grid;grid-template-columns:100px minmax(0,1fr);border-radius:20px;overflow:visible;background:#fff9e5;border-color:#e4cf85}.adventure-feature-image{height:100%;border-radius:20px 0 0 20px}.adventure-feature-image img{object-position:45% 22%;border-radius:20px 0 0 20px}.adventure-feature-label{display:none}.adventure-feature-body{padding:16px 14px}.adventure-feature-body h2{font-size:22px;margin:5px 0 10px}.adventure-invite{font-size:13px;margin:10px 0}.adventure-sounds>span{height:30px;min-width:30px;font-size:19px}.adventure-start{font-size:15px;min-height:48px}.adventure-rules{margin-top:4px}
+ .adventure-map{width:100%}.adventure-progress{padding:15px;margin-bottom:24px}.adventure-progress>div:first-child{display:block}.adventure-progress strong,.adventure-progress>div:first-child>span{display:block}.adventure-progress>div:first-child>span{margin-top:5px}.adventure-chapter{margin-bottom:26px}.adventure-chapter>h2{font-size:17px;margin-bottom:10px}.adventure-path{grid-template-columns:1fr;padding:4px 0 4px 22px;gap:14px}.adventure-path:before{top:0;bottom:0;right:auto;left:17px;border-top:0;border-left:3px dashed #bdd3b4}
+ .adventure-overview .trail-card.adventure-stop{padding:16px 14px 12px 24px;display:block;margin:0 0 0 12px;border-radius:18px}.adventure-node{position:absolute;left:-32px;top:20px;width:38px;height:38px}.adventure-stop-top{flex-direction:row;justify-content:space-between;font-size:12px}.adventure-stop h3{font-size:18px;min-height:0}.adventure-state{font-size:10px}.adventure-stop-content{gap:10px}.adventure-stop .adventure-sounds{position:absolute;right:12px;bottom:12px;pointer-events:none}.adventure-week-link{padding-right:75px;justify-content:flex-start;gap:8px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.adventure-overview *, .encouragement-card *{animation:none!important;transition:none!important}}
+.adventure-feature-image img{object-position:center 65%}
+@media(max-width:700px){body:has(.adventure-overview) .course-context{display:none}.adventure-companion .adventure-feature-image img{object-position:77% 75%}}

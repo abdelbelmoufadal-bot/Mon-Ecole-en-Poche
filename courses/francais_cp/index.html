@@ -3134,7 +3134,7 @@ async function playBilanFeedback(active,narration,advance){
  stopSpeech();
  const feedback=$('#bilan-feedback');
  const status=document.createElement('p');status.id='bilan-audio-status';status.setAttribute('role','status');
- const next=document.createElement('button');next.type='button';next.className='btn yellow';next.id='bilan-next-question';next.textContent='Question suivante →';next.hidden=true;
+ const next=document.createElement('button');next.type='button';next.className='btn yellow';next.id='bilan-next-question';next.textContent='Exercice suivant →';next.hidden=true;
  feedback.append(status,next);
  let advanced=false;
  const go=()=>{if(advanced||!active())return;advanced=true;advance();};
@@ -3148,9 +3148,9 @@ async function playBilanFeedback(active,narration,advance){
   status.textContent='Écoute la réponse…';
   if(!await sequence.voice(()=>speak(narration))){recover();return;}
  }
- status.textContent='La question suivante arrive…';
- if(!await sequence.wait(1000))return;
- sequence.finish();go();
+ status.textContent='Prends ton temps. Appuie pour passer à l’exercice suivant.';
+ if(!await sequence.wait(500))return;
+ sequence.finish();if(active())next.hidden=false;
 }
 
 function playPhoneme(g){
@@ -4677,9 +4677,9 @@ async function playEnglishMissionFeedback(active,message,narration,advance){
  if(!await sequence.voice(()=>playSuccessChimeAndCheer(message,'en'))){recover();return;}
  if(!await sequence.wait(500))return;
  if(narration){status.textContent='Listen to the answer…';if(!await sequence.voice(()=>enSpeak(narration))){recover();return;}}
- status.textContent='The next challenge is coming…';
- if(!await sequence.wait(1000))return;
- sequence.finish();if(active())advance();
+ status.textContent='Take your time. Press Continue when you are ready.';
+ if(!await sequence.wait(500))return;
+ sequence.finish();if(active())next.hidden=false;
 }
 
 const oldEnglishValidator=validEnglishRecord;
@@ -5336,104 +5336,25 @@ function saveWeekBilan(weekId, score, maxScore, note20){
 
 function weeksOverviewPage(){
  stopSpeech();
- const lang = (typeof currentAppLang !== 'undefined' && currentAppLang) || 'fr';
- const txt = (SITE_PAGES_I18N[lang] && SITE_PAGES_I18N[lang].weeks) || SITE_PAGES_I18N.fr.weeks;
- const bilans = ensureBilans();
- const completedCount = WEEK_BILANS.filter(w => isWeekCompleted(w.weekId)).length;
- const nextWeek = WEEK_BILANS.find(w => !isWeekCompleted(w.weekId)) || WEEK_BILANS[0];
-
- $('#main').innerHTML = `
-  <div class="crumb"><a href="#subjects">${(lang === 'ar' ? 'الرئيسية' : lang === 'en' ? 'Home' : 'Accueil')}</a><span class="sep">/</span><span>${txt.crumb}</span></div>
-  
-  <div class="week-hero">
-   <div class="week-hero-content">
-    <div class="eyebrow-pill">${txt.eyebrow}</div>
-    <h1>${txt.title}</h1>
-    <p>${txt.desc}</p>
-    <div class="week-hero-meta">
-     <span class="meta-pill">${txt.validated(completedCount)}</span>
-     <span class="meta-pill">${txt.passGrade}</span>
-     <a href="#week/${nextWeek.weekId}" class="btn yellow">${txt.continueWeek(nextWeek.weekNum)}</a>
-    </div>
-   </div>
-   <div class="week-hero-mascot">
-    <div class="mascot-bubble">
-     <span>${txt.mascotBubble}</span>
-     <button class="voice-mini-btn" id="mascot-speak" aria-label="Audio">🔊</button>
-    </div>
-    <div class="mascot-avatar" onclick="cheerWithCapi()" title="Capi !">🐱</div>
-   </div>
-  </div>
-
-  <div class="trail-header">
-   <h2>${txt.trailTitle}</h2>
-   <span class="badge">${txt.trailBadge}</span>
-  </div>
-
-  <div class="week-trail-grid">
-   ${WEEK_BILANS.map(w => {
-     const unlocked = isWeekUnlocked(w.weekId);
-     const done = isWeekCompleted(w.weekId);
-     const isCurrent = (unlocked && !done);
-     const b = getWeekBilan(w.weekId);
-     const note20 = b ? (b.note20 !== undefined ? b.note20 : Math.round((b.score / (b.maxScore || 4)) * 20)) : 0;
-     const wEx = (typeof WEEK_EXERCISES !== 'undefined') ? WEEK_EXERCISES[w.weekId] : null;
-
-     let statusClass = 'locked';
-     let badgeHtml = `<span class="trail-badge locked">${txt.lockedBadge}</span>`;
-     let noteHtml = '';
-
-     if (done) {
-       statusClass = 'completed';
-       badgeHtml = `<span class="trail-badge completed">${txt.doneBadge} · ${note20}/20</span>`;
-       noteHtml = `<div class="trail-note-pill note-gold">🏆 ${note20} / 20</div>`;
-     } else if (unlocked) {
-       statusClass = 'current';
-       badgeHtml = `<span class="trail-badge current">${txt.currentBadge}</span>`;
-       if (b && b.attempts > 0) {
-         noteHtml = `<div class="trail-note-pill note-retry">⚡ ${note20} / 20 (min. 10/20)</div>`;
-       }
-     }
-
-     return `
-      <div class="trail-card ${statusClass}">
-       <div class="trail-card-head">
-        <span class="trail-week-num">${txt.weekLabel(w.weekNum)}</span>
-        ${badgeHtml}
-       </div>
-       <div class="trail-card-body">
-        <div class="trail-week-title">${esc(w.title)}</div>
-        <div class="trail-week-meta">
-         <span>${txt.soundsLabel} <strong>${w.graphies.map(g => esc(g)).join(', ')}</strong></span>
-         <span>${wEx ? (wEx.letters ? wEx.letters.reduce((acc, l) => acc + (l.oral?.length || 0) + (l.ecrit?.length || 0), 0) : 18) : 18} ateliers</span>
-        </div>
-        ${noteHtml}
-       </div>
-       <div class="trail-card-actions">
-        ${unlocked ? `
-          <a href="#week/${w.weekId}" class="btn ${isCurrent ? 'yellow' : 'secondary'} compact">
-           ${done ? txt.btnReview : isCurrent ? txt.btnContinue : txt.btnStart}
-          </a>
-        ` : `
-          <button class="btn secondary compact locked-btn" onclick="renderLockedWeekPage(${w.weekId})">
-           ${txt.lockedBadge}
-          </button>
-        `}
-       </div>
-      </div>
-     `;
-   }).join('')}
-  </div>
- `;
-
- const btnMascot = document.getElementById('mascot-speak');
- if(btnMascot) {
-   btnMascot.onclick = (e) => {
-     if (e) e.stopPropagation();
-     speak(txt.mascotBubble.replace(/[«»]/g, '').trim());
-   };
- }
- window.scrollTo(0, 0);
+ const lang=(typeof currentAppLang!=='undefined'&&currentAppLang)||'fr';
+ const t=lang==='en'?{eyebrow:'MY READING ADVENTURE',title:'On an adventure with Capi',intro:'Listen, play and grow with Capi!',next:'Your next adventure',go:'Let’s go!',week:'Week',sounds:'Sounds',done:'Completed',current:'Your turn',locked:'Coming soon',review:'Play again',details:'Week details',chapters:['Meet our friends','Everyday adventures','Explore the world'],progress:`${WEEK_BILANS.filter(w=>isWeekCompleted(w.weekId)).length} adventures completed out of 12`,rules:'18 workshops, then a weekly challenge. A score of 10/20 unlocks the next week.',hear:'Listen to Capi',all:'My 12 adventures'}:lang==='ar'?{eyebrow:'مغامرتي في القراءة',title:'في مغامرة مع كابي',intro:'استمع والعب وتعلّم مع كابي!',next:'مغامرتك القادمة',go:'هيا بنا!',week:'الأسبوع',sounds:'الأصوات',done:'مكتمل',current:'دورك الآن',locked:'قريبًا',review:'العب مجددًا',details:'تفاصيل الأسبوع',chapters:['نتعرف على أصدقائنا','مغامرات يومية','نكتشف العالم'],progress:`${WEEK_BILANS.filter(w=>isWeekCompleted(w.weekId)).length} / 12 مغامرة مكتملة`,rules:'18 نشاطًا ثم تحدي الأسبوع. تحتاج إلى 10/20 لفتح الأسبوع التالي.',hear:'استمع إلى كابي',all:'مغامراتي الاثنتا عشرة'}:{eyebrow:'MON AVENTURE EN LECTURE',title:'En voyage avec Capi',intro:'Écoute, joue et avance avec Capi !',next:'Ta prochaine aventure',go:'C’est parti !',week:'Semaine',sounds:'Sons',done:'Terminée',current:'À toi de jouer',locked:'Bientôt disponible',review:'Rejouer',details:'Détails de la semaine',chapters:['Rencontrons les amis','Les aventures du quotidien','Explorons le monde'],progress:`${WEEK_BILANS.filter(w=>isWeekCompleted(w.weekId)).length} aventures terminées sur 12`,rules:'18 ateliers, puis un défi de la semaine. Réussis avec au moins 10/20 pour débloquer la suite.',hear:'Écouter Capi',all:'Mes 12 aventures'};
+ const doneCount=WEEK_BILANS.filter(w=>isWeekCompleted(w.weekId)).length;
+ const next=WEEK_BILANS.find(w=>isWeekUnlocked(w.weekId)&&!isWeekCompleted(w.weekId))||WEEK_BILANS[0];
+ const sounds=w=>w.graphies.map(g=>`<span>${esc(g)}</span>`).join('');
+ const scene=w=>resolveCourseAssetPath(UPGRADE.garden);
+ $('#main').innerHTML=`<section class="adventure-overview" aria-labelledby="adventure-title">
+  <header class="adventure-heading"><div><p class="adventure-eyebrow">${t.eyebrow}</p><h1 id="adventure-title">${t.title}</h1><p>${t.intro}</p></div><button type="button" id="mascot-speak" class="btn secondary compact" aria-label="${t.hear}">🔊 ${t.hear}</button></header>
+  <div class="adventure-layout"><aside class="adventure-companion" aria-label="${t.next}">
+   <div class="adventure-feature-image"><img src="${scene(next)}" alt="Lina, Sami et Capi dans le jardin"><span class="adventure-feature-label">${t.next}</span></div>
+   <div class="adventure-feature-body"><p class="adventure-eyebrow">${t.week} ${next.weekNum}</p><h2>${esc(next.title)}</h2><div class="adventure-sounds" aria-label="${t.sounds}">${sounds(next)}</div><p class="adventure-invite">${lang==='fr'?`Capi t’attend ! Découvre les sons ${esc(next.graphies.join(' et '))}.`:t.intro}</p><a class="btn yellow adventure-start" href="#week/${next.weekId}">${doneCount===12?t.review:t.go} <span aria-hidden="true">→</span></a><details class="adventure-rules"><summary>${t.details}</summary><p>${t.rules}</p></details></div>
+  </aside><div class="adventure-map"><div class="adventure-progress"><div><strong>${t.all}</strong><span>${t.progress}</span></div><div class="adventure-progress-track" role="progressbar" aria-label="${t.progress}" aria-valuemin="0" aria-valuemax="12" aria-valuenow="${doneCount}"><span style="width:${doneCount/12*100}%"></span></div></div>
+  ${[0,1,2].map(chapter=>`<section class="adventure-chapter" aria-labelledby="chapter-${chapter}"><h2 id="chapter-${chapter}"><span>0${chapter+1}</span>${t.chapters[chapter]}</h2><ol class="adventure-path" start="${chapter*4+1}">${WEEK_BILANS.slice(chapter*4,chapter*4+4).map(w=>{
+   const done=isWeekCompleted(w.weekId),unlocked=isWeekUnlocked(w.weekId),current=w.weekId===next.weekId&&doneCount<12;
+   return `<li class="trail-card adventure-stop ${done?'completed':unlocked?'current':'locked'}${current?' is-next':''}"><span class="adventure-node" aria-hidden="true">${done?'✓':w.weekNum}</span><div class="adventure-stop-content"><div class="adventure-stop-top"><span>${t.week} ${w.weekNum}</span><span class="adventure-state">${done?'★ '+t.done:current?'▶ '+t.current:unlocked?t.current:'🔒 '+t.locked}</span></div><h3>${esc(w.title)}</h3><div class="adventure-sounds" aria-label="${t.sounds}">${sounds(w)}</div>${unlocked?`<a class="adventure-week-link" href="#week/${w.weekId}" ${current?'aria-current="step"':''}>${done?t.review:t.go} <span aria-hidden="true">→</span></a>`:`<button type="button" class="adventure-week-link" onclick="renderLockedWeekPage(${w.weekId})">${t.details} <span aria-hidden="true">→</span></button>`}</div></li>`;
+  }).join('')}</ol></section>`).join('')}
+  </div></div></section>`;
+ $('#mascot-speak').onclick=()=>speak(lang==='fr'?`Viens avec Capi ! ${t.intro} Ta prochaine aventure : ${next.title}.`:t.intro);
+ window.scrollTo(0,0);
 }
 
 function renderLockedWeekPage(weekId){
@@ -6041,45 +5962,24 @@ function renderAtelierBody(ex){
 }
 
 function showEncouragementModal(msg, nextStepLabel, callback){
-  try {
-    if(typeof playSuccessChimeAndCheer === 'function'){
-      playSuccessChimeAndCheer(msg || 'Bravo ! C\'est très bien !');
-    }
-  } catch(e){}
-
-  const existing = document.querySelector('.encouragement-modal');
-  if(existing && existing.parentNode) existing.parentNode.removeChild(existing);
-
-  try {
-    if(typeof cheerWithCapi === 'function') cheerWithCapi(msg);
-  } catch(e){}
-
-  const modal = document.createElement('div');
-  modal.className = 'encouragement-modal';
-  modal.innerHTML = `
-    <div class="encouragement-card">
-      <div class="encouragement-mascot joy-jump">🐱🎉</div>
-      <div class="encouragement-title">🌟 BRAVO ! 🌟</div>
-      <div class="encouragement-sub">${msg || "C'est super, tu as réussi !"}</div>
-      <div class="encouragement-stars">⭐⭐⭐</div>
-      <div class="encouragement-next-indicator">${nextStepLabel || 'Passage à la suite... ➔'}</div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  try {
-    if(typeof createSparkles === 'function'){
-      createSparkles(modal.querySelector('.encouragement-card'));
-    }
-  } catch(e){}
-
-  setTimeout(() => {
-    modal.classList.add('fade-out');
-    setTimeout(() => {
-      if(modal.parentNode) modal.parentNode.removeChild(modal);
-      if(callback) callback();
-    }, 200);
-  }, 1400);
+  stopSpeech();
+  document.querySelector('.encouragement-modal')?.remove();
+  const modal=document.createElement('div');modal.className='encouragement-modal';
+  modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-labelledby','atelier-success-title');
+  modal.innerHTML=`<div class="encouragement-card"><div class="encouragement-mascot" aria-hidden="true">🐱</div><h2 id="atelier-success-title">Bravo !</h2><p>${esc(msg||'Tu as réussi !')}</p><p id="atelier-audio-status" role="status">Écoute Capi…</p><button type="button" id="atelier-continue" class="btn yellow" hidden>Valider et continuer →</button><button type="button" id="atelier-stop-feedback" class="text-button">Arrêter la voix</button></div>`;
+  document.body.append(modal);
+  const next=modal.querySelector('#atelier-continue'),status=modal.querySelector('#atelier-audio-status');
+  const previousFocus=document.activeElement,screen=location.hash,profile=family.active;
+  const active=()=>modal.isConnected&&location.hash===screen&&family.active===profile;
+  const ready=()=>{if(active()){status.textContent='À toi de choisir quand continuer.';next.hidden=false;modal.querySelector('#atelier-stop-feedback').hidden=true;next.focus({preventScroll:true});}};
+  const sequence=createBilanAudioSequence(active,ready);
+  modal.querySelector('#atelier-stop-feedback').onclick=()=>stopSpeech();
+  let submitted=false;
+  next.onclick=()=>{if(submitted||!active())return;submitted=true;sequence.finish();stopSpeech();modal.remove();if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});if(callback)callback();};
+  // Keep keyboard focus in this modal until explicit continuation.
+  modal.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();stopSpeech();}if(event.key==='Tab'){event.preventDefault();const target=next.hidden?modal.querySelector('#atelier-stop-feedback'):next;target.focus();}});
+  modal.querySelector('#atelier-stop-feedback').focus({preventScroll:true});
+  void (async()=>{const ended=await sequence.voice(()=>playSuccessChimeAndCheer(msg||'Bravo ! Tu as réussi.','fr'));if(!ended){if(sequence.current()){sequence.finish();ready();}return;}if(!await sequence.wait(500))return;sequence.finish();ready();})();
 }
 
 function advanceAtelierStep(){

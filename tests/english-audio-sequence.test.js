@@ -17,7 +17,7 @@ const {settle,finishVoice,finishFeedback}=require('./bilan-audio-helpers');
    await finishVoice(f);assert.equal(f.audio.length+f.utterances.length,initial);flush(500);await settle();
    assert.equal(f.audio.length+f.utterances.length,initial+1,'answer starts after encouragement and silence');
    flush(1000);await settle();assert.ok($('#en-question'),'wait for actual narrator end');
-   await finishVoice(f);assert.ok($('#en-question'));flush(1000);await settle();assert.ok(!$('#en-question'),'advance after final pause');
+   await finishVoice(f);assert.ok($('#en-question'));flush(500);await settle();flush(1000);assert.ok($('#en-question'),'finished voices never advance without a click');assert.equal($('#en-next').hidden,false);$('#en-next').click();assert.ok(!$('#en-question'),'advance only after Continue');
    mission();answer();w.stopSpeech();await settle();flush(500);flush(1000);assert.ok($('#en-question'));assert.equal($('#en-next').hidden,false);
    $('#en-next').click();assert.ok(!$('#en-question'),'Continue is available after cancellation');
    mission();answer();await finishVoice(f);$('#en-pause').click();flush(500);flush(1000);await settle();assert.ok($('.pause-panel'));assert.ok(!$('#en-audio-status'));

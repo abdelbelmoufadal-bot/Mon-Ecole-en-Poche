@@ -17,7 +17,8 @@ const testSuites = [
   { name: 'Parcours des semaines en cinq étapes', script: 'tests/week-journey.test.js' },
   { name: 'Enchaînement des voix du Grand Bilan', script: 'tests/bilan-audio.test.js' },
   { name: 'Enchaînement des voix des défis anglais', script: 'tests/english-audio-sequence.test.js' },
-  { name: 'Présentation mobile et menu compact', script: 'tests/mobile-layout.test.js' }
+  { name: 'Présentation mobile et menu compact', script: 'tests/mobile-layout.test.js' },
+  { name: 'Carte des aventures et validation manuelle des ateliers', script: 'tests/adventure.test.js' }
 ];
 
 let failed = 0;

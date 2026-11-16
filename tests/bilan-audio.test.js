@@ -17,7 +17,7 @@ const {settle,finishVoice,finishFeedback}=require('./bilan-audio-helpers');
    flush(500);await settle();
    assert.equal(f.audio.length+f.utterances.length,voicesBefore+1,'narrator starts after the pause');
    flush(1000);await settle();assert.equal(step(),0,'no transition before narrator end');
-   await finishVoice(f);assert.equal(step(),0);flush(1000);await settle();assert.equal(step(),1);
+   await finishVoice(f);assert.equal(step(),0);flush(500);await settle();flush(1000);assert.equal(step(),0,'finished voices never advance without a click');assert.equal($('#bilan-next-question').hidden,false);$('#bilan-next-question').click();assert.equal(step(),1);
    correct();const score=w.eval('currentBilanState.score');correct();assert.equal(w.eval('currentBilanState.score'),score,'score remains idempotent');
    w.stopSpeech();await settle();flush(500);flush(1000);flush(350);await settle();assert.equal(step(),1,'Stop cancels every pending transition');
    assert.equal($('#bilan-next-question').hidden,false,'manual recovery after Stop');$('#bilan-next-question').click();assert.equal(step(),2);
