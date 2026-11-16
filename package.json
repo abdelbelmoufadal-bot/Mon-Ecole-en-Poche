@@ -1,0 +1,32 @@
+{
+  "name": "mon-ecole-en-poche",
+  "version": "2.1.0",
+  "description": "Application web ludo-éducative pour le CP : Citronnelle CP & English Starship Level 1",
+  "main": "index.html",
+  "scripts": {
+    "test": "node tests/run-all-tests.js",
+    "test:buttons": "node tests/buttons.test.js",
+    "test:router": "node tests/router.test.js",
+    "test:runtime": "node tests/runtime.test.js",
+    "test:data": "node tests/data.test.js",
+    "test:nav": "node tests/navigation.test.js",
+    "test:regressions": "node tests/regressions.test.js",
+    "test:audit": "node tests/functional-audit.js",
+    "test:media": "python scripts/audit-media.py",
+    "test:audio": "node tests/audio-output.test.js",
+    "serve": "node scripts/serve.js"
+  },
+  "keywords": [
+    "education",
+    "cp",
+    "citronnelle",
+    "english-starship",
+    "reading",
+    "interactive"
+  ],
+  "author": "Mon École en Poche",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "jsdom": "^31.0.1"
+  }
+}

@@ -1,0 +1,18 @@
+/* Keep the drawing and lesson cards within narrow grid tracks. */
+.dialogue-lines { white-space: normal; direction: ltr; text-align: left; }
+.dialogue-lines .dialogue-turn { display: block; margin: 0 0 12px; line-height: 1.7; }
+.dialogue-lines .dialogue-turn:last-child { margin-bottom: 0; }
+.dialogue-lines .dialogue-turn strong { font-weight: 700; }
+.ritual-steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ritual-card, .dialogue-box, .rubrique-subcard { min-width: 0; }
+@media (max-width: 800px) {
+  .ritual-steps-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .topbar .brand { flex: 1 0 100%; min-width: 0; max-width: 100%; }
+  .topbar .sound-test-btn, .topbar .lang-btn, .topbar .profile-pill { min-height: 44px; }
+  .ritual-card { padding: 20px; }
+  .oral-preview-box { flex-wrap: wrap; min-width: 0; }
+  .oral-preview-box .dialogue-box { flex: 1 1 140px; }
+  .ritual-card button, .ritual-card a { max-width: 100%; white-space: normal; }
+}

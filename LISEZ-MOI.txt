@@ -1,0 +1,141 @@
+MON ÉCOLE EN POCHE — NOUVEAU NOM DE L’APPLICATION
+Citronnelle reste le nom du manuel de français.
+
+NOUVEAUX DIALOGUES ANGLAIS — 14 novembre 2026
+Dans English, ouvrez une leçon puis Talk together.
+100 dialogues couvrent les 16 leçons et les quatre parties disponibles.
+Chaque dialogue propose une question, une réponse, une demande et une réplique.
+Les boutons permettent d’écouter chaque phrase et de répéter la réponse.
+Questions & answers entraîne les réponses orales ; Listen & act entraîne les demandes.
+Mixed speaking mission mélange les deux. Le choix 10 / 15 / 20 est conservé.
+200 exercices supplémentaires portent le total anglais de 180 à 380.
+Les 180 exercices d’origine et leurs progrès sont conservés ; le pourcentage peut
+baisser parce que de nouveaux exercices ont été ajoutés au total.
+Les modèles sont des compléments au manuel, avec une voix synthétique anglaise.
+Un adulte observe les réponses ; la prononciation n’est pas évaluée automatiquement.
+Les noms, âges et familles proposés sont des exemples, remplaçables ou imaginaires.
+
+CITRONNELLE CP — PROFILS, ACQUIS ET ATELIERS
+Mise à jour du 14 novembre 2026
+
+POUR COMMENCER
+1. Ouvrez Citronnelle-CP.html dans Chrome ou Edge, au même emplacement
+   qu’avant pour retrouver le stockage utilisé par votre navigateur.
+2. Cliquez sur le profil en haut de l’écran pour renommer « Mon enfant »
+   et ajouter un profil par enfant. Les anciens progrès restent au premier.
+3. Ouvrez Espace adulte. Indiquez la semaine travaillée dans Voix et confort,
+   puis adaptez les contenus de maths au programme et aux acquis de l’enfant.
+4. Faites un petit bilan accompagné, sans donner d’abord les réponses.
+5. Alternez rappels, atelier, jeu et activité au crayon.
+
+CE QUI CHANGE
+- Suivi séparé pour chaque enfant, sans inscription ni compte Internet.
+- Étoiles conservées ; observation séparée : avec aide, seul, à distance.
+- Les aides et les erreurs ne deviennent pas des réussites autonomes.
+- Rappels datés : après un, trois ou sept jours selon les observations.
+  Ce calendrier est une règle du produit, pas une norme scientifique.
+- 118 défis du parcours du livre, dont les 113 anciens préservés.
+- 97 exercices de nombres conservés, plus 186 activités accompagnées.
+- Lecture orale, syllabes et petits mots, dictée sur cahier, récit oral,
+  écriture au crayon, problèmes, décompositions, formes et longueurs.
+- Extension facultative 11–20 et dizaines jusqu’à 100, autorisée par l’adulte.
+- 1 142 audios français intégrés, dont ceux des nouveaux ateliers.
+- Choix du retournement des cartes du memory ; mouvement réduit ;
+  navigation sur mobile sans menu horizontal caché.
+- Table des sources, graphies et prérequis à relire avec l’enseignant.
+
+SAUVEGARDES
+Exportez toute la famille depuis Espace adulte ou Mes progrès.
+Le fichier JSON contient les profils, les observations et les annotations.
+Une ancienne sauvegarde peut être importée dans un nouveau profil sans
+remplacer les profils existants. Une sauvegarde familiale remplace la famille
+après confirmation dans l’application.
+Les dessins sont aussi enregistrés dans la base locale IndexedDB lorsque
+celle-ci est disponible. Vérifiez régulièrement un export sur un autre appareil.
+Une erreur de sauvegarde est signalée ; ne fermez pas avant d’avoir exporté.
+
+DEUX FORMATS
+- Citronnelle-CP.html : fichier autonome, environ 87 Mo, tous les médias inclus.
+- Citronnelle-CP-leger/index.html : fichier principal d’environ 1,2 Mo,
+  accompagné du dossier assets. Gardez ce dossier entier. Aucun serveur requis.
+  Le ZIP permet de transporter l’ensemble.
+Avant de changer de format, de navigateur ou d’emplacement, exportez depuis
+l’ancienne adresse puis importez dans la nouvelle. Le stockage peut être séparé.
+
+ACCOMPAGNEMENT HUMAIN À CONSERVER
+Les observations de lecture et d’écriture sont validées par un adulte.
+Les sons et les modèles doivent être relus et écoutés avec l’enseignant.
+La cursive reste un modèle à repasser : aucune animation de geste cursif
+certifiée ni reconnaissance automatique de l’écriture n’a été ajoutée.
+Le bilan n’est ni un test standardisé ni un diagnostic. Les activités de maths
+ajoutées ne constituent pas à elles seules tout le programme annuel de CP.
+Les séances guidées sont distinguées d’un rappel autonome un autre jour.
+
+Les pages originales du livre et du guide, leurs crédits et les licences
+de la police et de la voix sont conservés. Les nouvelles activités complètent
+le manuel ; elles ne sont pas présentées comme des exercices officiels de l’éditeur.
+
+
+NOUVEAU : ENGLISH STARSHIP À CÔTÉ DU FRANÇAIS
+Mise à jour du 14 novembre 2026
+
+Ouvrez le même fichier Citronnelle-CP.html, puis cliquez sur English dans
+le menu ou sur la carte English à l’accueil. Les profils restent communs ;
+les acquis des deux matières sont distingués.
+
+La partie fournie comporte 33 pages : Welcome, Back to School, My Family
+et Review 1. Le cours ajoute 16 petites leçons, 65 cartes de vocabulaire,
+180 activités et 130 modèles vocaux anglais américains préparés hors ligne.
+Le français et ses 1 142 audios sont conservés.
+
+Chaque leçon propose : découvrir les mots et les phrases, une mission,
+parler avec un adulte, ouvrir les pages originales et accompagner l’enfant.
+L’adulte peut régler la vitesse anglaise et choisir la leçon dans Espace adulte.
+
+Les jeux d’anglais comprennent écouter et retrouver une image, un memory
+mot/image et des consignes à réaliser avec un adulte. Une répétition après
+modèle ne mesure pas une expression spontanée. La prononciation et les
+réponses orales sont observées par l’adulte, sans notation vocale automatique.
+
+Les nouveaux audios sont synthétiques : les pistes, chansons et vidéos
+de l’éditeur ne sont pas incluses. Les exercices imprimés qui dépendent de
+ces pistes restent consultables, sans réponses d’écoute inventées.
+Les unités 3 à 8 du sommaire ne sont pas ajoutées sans leurs pages.
+
+Les exportations familiales incluent l’anglais. Avant de déplacer l’application
+ou de changer de format, exporter la famille puis la restaurer dans le nouveau
+dossier. Conservez la version à jour pour lire les sauvegardes contenant l’anglais.
+
+
+INTERFACE ANGLAISE ET RÉPÉTITION DU SON
+Dans la partie English, les menus, consignes, aides, progrès et outils sont en anglais.
+Le français reste disponible dans sa propre matière.
+
+Pour travailler un son, un mot ou une phrase :
+1. Toucher sa carte ou son bouton Listen.
+2. Toucher Replay pour réécouter une fois.
+3. Toucher Listen & repeat pour une série de 1, 3 ou 5 écoutes (Plays).
+4. Choisir 2, 3 ou 5 secondes de pause (Your turn) pour répéter à voix haute.
+5. Régler Speed sur Slow ou Very slow si nécessaire.
+Stop interrompt immédiatement la lecture et les répétitions. Changer de page
+ou de profil arrête aussi la série. Aucun microphone n’est nécessaire.
+
+Les réglages anglais sont conservés par enfant et inclus dans la sauvegarde.
+Les identifiants des activités n’ont pas changé : les progrès existants restent repris.
+
+
+MISSIONS ENGLISH : AU MOINS 10 DÉFIS
+Les missions d’anglais comportent désormais 10 défis par défaut, indépendamment
+des réglages du français. Dans English > Grown-ups, Challenges per mission
+permet de choisir 10, 15 ou 20 défis pour chaque enfant.
+Les petites leçons sont complétées par des activités antérieures de la même
+unité, puis par des répétitions signalées Practice again si nécessaire.
+Les répétitions ne créent pas de nouvelles étoiles et ne valident pas à elles
+seules une maîtrise à distance. La pause reste disponible à chaque défi.
+
+
+Mission length: use the 10 / 15 / 20 buttons at the top of an English mission. Choosing a number starts a new mission immediately; completed answers and stars stay saved. The choice is saved separately for each learner. Grown-up settings also confirms when the preference is saved.
+
+
+ORGANISATION PAR MATIERE
+Au démarrage sans lien de leçon, choisissez Mes matières. Le logo y ramène. Français, English et Mathématiques ont leur propre navigation. Les nombres et leur panier sont dans Mathématiques. Arabe et Éducation islamique sont à ajouter avec leurs livres. Les profils et la sauvegarde sont communs. Chaque matière garde ses progrès. Les nombres ont un réglage de mission 3/4/6 distinct du français ; l’anglais conserve 10/15/20.

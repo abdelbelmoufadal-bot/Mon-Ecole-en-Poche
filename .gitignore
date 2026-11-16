@@ -1,0 +1,9 @@
+/node_modules/
+/scratch/
+/docs/
+/archives-html/
+/sources-pdf/
+/analyse-matieres/
+/Citronnelle-CP-Livre1/
+*.pdf
+/docs/*/before/
